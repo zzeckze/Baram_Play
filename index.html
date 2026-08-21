@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f4f5f8">
-<title>공연단체 통합 일정 운영 V9</title>
+<title>BARAM PLAY · 공연단체 통합 일정 운영</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -1142,10 +1142,10 @@ renderApp();
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyAg35-YGDPxl8pvPDY3snQteDFWQSlPtJI",authDomain:"theater-schedule-89f26.firebaseapp.com",projectId:"theater-schedule-89f26",storageBucket:"theater-schedule-89f26.firebasestorage.app",messagingSenderId:"286330395772",appId:"1:286330395772:web:c9b08b49b0e28fd2103df9"};
+const firebaseConfig={apiKey:"AIzaSyCOG_w4AbEDhLKURNXe0zcasrznIMzpKYo",authDomain:"baram-play.firebaseapp.com",projectId:"baram-play",storageBucket:"baram-play.firebasestorage.app",messagingSenderId:"542152305525",appId:"1:542152305525:web:dc382e928f51f64683c13c"};
 window.OpsCloud={ready:false,status:'connecting'};
 try{
-  const fbApp=initializeApp(firebaseConfig),auth=getAuth(fbApp),db=getFirestore(fbApp),sharedRef=doc(db,'theaterClown','operationsV2');
+  const fbApp=initializeApp(firebaseConfig),auth=getAuth(fbApp),db=getFirestore(fbApp),sharedRef=doc(db,'baramPlay','main');
   let applying=false;
   window.OpsCloud.save=async payload=>{if(!window.OpsCloud.ready||applying){window.__OPS_PENDING=payload;return}const clean=JSON.parse(JSON.stringify(payload||{}));clean._cloudMeta={updatedAt:serverTimestamp()};await setDoc(sharedRef,clean,{merge:false})};
   async function start(user){if(!user)return;window.OpsCloud.ready=true;window.OpsCloud.status='connected';const initial=await getDoc(sharedRef);if(!initial.exists()){await window.OpsCloud.save(window.__OPS_getData())}onSnapshot(sharedRef,snap=>{if(!snap.exists())return;const remote=snap.data()||{};delete remote._cloudMeta;applying=true;try{window.__OPS_applyRemote(remote)}finally{applying=false}},err=>{console.error(err);window.OpsCloud.status='error'});if(window.__OPS_PENDING){const p=window.__OPS_PENDING;window.__OPS_PENDING=null;await window.OpsCloud.save(p)}}
